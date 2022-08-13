@@ -72,18 +72,15 @@ function pad(value) {
 }
 refs.buttonStart.addEventListener('click', buttonActiveStartTimer);
 const flatpickr = flatpickr(refs.inputTextDate, options);
+
 function convertMs(ms) {
   const second = 1000;
   const minute = second * 60;
   const hour = minute * 60;
   const day = hour * 24;
   const days = pad(Math.floor(ms / day));
-  // Remaining hours
   const hours = pad(Math.floor((ms % day) / hour));
-  // Remaining minutes
   const minutes = pad(Math.floor(((ms % day) % hour) / minute));
-  // Remaining seconds
   const seconds = pad(Math.floor((((ms % day) % hour) % minute) / second));
-
   return { days, hours, minutes, seconds };
 }
