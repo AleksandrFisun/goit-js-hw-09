@@ -61,7 +61,7 @@ function defaultNumberCalendar() {
   refs.spanMinutes.textContent = '00';
   refs.spanSeconds.textContent = '00';
 }
-function timerDate ({ days, hours, minutes, seconds }) {
+function timerDate({ days, hours, minutes, seconds }) {
   refs.spanDays.textContent = days;
   refs.spanHours.textContent = hours;
   refs.spanMinutes.textContent = minutes;
@@ -72,15 +72,11 @@ function pad(value) {
 }
 refs.buttonStart.addEventListener('click', buttonActiveStartTimer);
 const flatpickr = flatpickr(refs.inputTextDate, options);
-
 function convertMs(ms) {
-  // Number of milliseconds per unit of time
   const second = 1000;
   const minute = second * 60;
   const hour = minute * 60;
   const day = hour * 24;
-
-  // Remaining days
   const days = pad(Math.floor(ms / day));
   // Remaining hours
   const hours = pad(Math.floor((ms % day) / hour));
