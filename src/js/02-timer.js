@@ -71,7 +71,7 @@ function pad(value) {
   return String(value).padStart(2, '0');
 }
 refs.buttonStart.addEventListener('click', buttonActiveStartTimer);
-let flatpickr = flatpickr(refs.inputTextDate, options);
+flatpickr = flatpickr(refs.inputTextDate, options);
 
 function convertMs(ms) {
   const second = 1000;
