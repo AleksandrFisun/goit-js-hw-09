@@ -2,10 +2,13 @@ const refs = {
   buttonStartRef: document.querySelector('button[data-start]'),
   buttonStopRef: document.querySelector('button[data-stop]'),
 };
+refs.buttonStopRef.style.cursor = 'pointer';
+refs.buttonStartRef.style.cursor = 'pointer';
 let timerId = null;
 // Вешаем disabled на кнопку и через setInterval запускаем каждую 1 секунду
 // рандом цвета на боди
 function randomBodyColorStart() {
+  refs.buttonStopRef.disabled = false;
   refs.buttonStartRef.disabled = true;
   timerId = setInterval(() => {
     let colorRandom = getRandomHexColor();
@@ -14,6 +17,7 @@ function randomBodyColorStart() {
 }
 // Снимаем disabled с кнопки старт, чистим таймер.
 function randomBodyColorStop() {
+  refs.buttonStopRef.disabled = true;
   refs.buttonStartRef.disabled = false;
   clearInterval(timerId);
 }

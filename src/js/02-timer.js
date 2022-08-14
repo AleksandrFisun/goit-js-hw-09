@@ -31,6 +31,7 @@ const options = {
   onChange() {
     if (timerId !== null) {
       defaultNumberCalendar();
+      refs.buttonStart.disabled = true;
     }
     clearInterval(timerId);
     return;
@@ -39,6 +40,7 @@ const options = {
 
 function buttonStartDisabled() {
   refs.buttonStart.disabled = true;
+  refs.buttonStart.style.cursor = 'pointer';
 }
 
 function buttonActiveStartTimer() {

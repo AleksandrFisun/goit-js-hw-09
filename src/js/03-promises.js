@@ -4,7 +4,9 @@ const refs = {
   stepDelayInput: document.querySelector('.form [name=step]'),
   amountInput: document.querySelector('.form [name=amount]'),
   formRef: document.querySelector('.form'),
+  buttonFormCreatePromise: document.querySelector('button'),
 };
+refs.buttonFormCreatePromise.style.cursor = 'pointer';
 function createPromise(position, delay) {
   const shouldResolve = Math.random() > 0.3;
   const promise = new Promise((resolve, reject) => {
@@ -44,15 +46,16 @@ function doPromises(data) {
     currDelay += step;
   }
 }
-refs.formRef.addEventListener('submit', ev => {
+
+function submitPromise(ev) {
   ev.preventDefault();
   const data = {
     position: 1,
     form: ev.currentTarget,
   };
   doPromises(data);
-});
-
+}
+refs.formRef.addEventListener('submit', submitPromise);
 // import Notiflix from 'notiflix';
 // refs = {
 //   firstDelayInput: document.querySelector('.form [name=delay]'),
