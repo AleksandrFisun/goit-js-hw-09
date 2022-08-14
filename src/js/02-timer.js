@@ -9,12 +9,13 @@ const refs = {
   spanMinutes: document.querySelector('span[data-minutes]'),
   spanSeconds: document.querySelector('span[data-seconds]'),
 };
-//
-buttonStartDisabled();
+
 defaultNumberCalendar();
 const currentTime = Date.now();
 let timerId = null;
 let dateInInput = '';
+refs.buttonStart.disabled = true;
+refs.buttonStart.style.cursor = 'not-allowed';
 const options = {
   enableTime: true, // Включает выбор времени
   time_24hr: true, //   Отображает средство выбора времени в 24-часовом режиме без выбора AM/PM
@@ -26,24 +27,25 @@ const options = {
       defaultNumberCalendar();
       clearInterval(timerId);
       refs.buttonStart.disabled = true;
+      refs.buttonStart.style.cursor = 'not-allowed';
       return;
     }
     refs.buttonStart.disabled = false;
+    refs.buttonStart.style.cursor = 'pointer';
     dateInInput = selectedDates[0];
   },
   onChange() {
     if (timerId !== null) {
       defaultNumberCalendar();
-      refs.buttonStart.disabled = true;
     }
     clearInterval(timerId);
     return;
   },
 };
 
-function buttonStartDisabled() {
-  refs.buttonStart.style.cursor = 'pointer';
-}
+// function buttonStartDisabled() {
+//   refs.buttonStart.style.cursor = 'pointer';
+// }
 
 function buttonActiveStartTimer() {
   timerId = setInterval(() => {
