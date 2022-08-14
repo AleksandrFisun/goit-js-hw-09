@@ -66,9 +66,10 @@ button{
     border-radius: 25px;
     color: royalblue;
     border-color: royalblue;
+    background-color: aliceblue;
 }
 button:hover {
-  color: #fafafa;
+  color: aliceblue;
   border-color: royalblue;
   background-color: royalblue;
 }
@@ -84,6 +85,7 @@ ul{
 }
 li{
   margin: 20px;
+  background-color: aliceblue;
 }
 a{
   padding: 6px 12px;
@@ -91,9 +93,13 @@ a{
   border-radius: 25px;
   text-decoration: none;
   color:royalblue;
+  background-color: aliceblue;
 }
 a:focus,
 a:hover{
-  color: #fafafa;
+  color: aliceblue;
   background-color:royalblue;
+}
+input{
+  background-color: aliceblue;
 }
