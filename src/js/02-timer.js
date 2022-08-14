@@ -23,6 +23,9 @@ const options = {
   onClose(selectedDates) {
     if (selectedDates[0] <= currentTime) {
       Notiflix.Notify.failure('Please choose a date in the future');
+      defaultNumberCalendar();
+      clearInterval(timerId);
+      refs.buttonStart.disabled = true;
       return;
     }
     refs.buttonStart.disabled = false;
@@ -31,6 +34,7 @@ const options = {
   onChange() {
     if (timerId !== null) {
       defaultNumberCalendar();
+      refs.buttonStart.disabled = true;
     }
     clearInterval(timerId);
     return;
@@ -38,7 +42,7 @@ const options = {
 };
 
 function buttonStartDisabled() {
-  refs.buttonStart.disabled = true;
+  refs.buttonStart.style.cursor = 'pointer';
 }
 
 function buttonActiveStartTimer() {
