@@ -10,44 +10,37 @@ const refs = {
   spanSeconds: document.querySelector('span[data-seconds]'),
 };
 
-defaultNumberCalendar();
+clearNumberCalendar();
 const currentTime = Date.now();
 let timerId = null;
 let dateInInput = '';
 refs.buttonStart.disabled = true;
-refs.buttonStart.style.cursor = 'not-allowed';
 const options = {
-  enableTime: true, // Включает выбор времени
-  time_24hr: true, //   Отображает средство выбора времени в 24-часовом режиме без выбора AM/PM
-  defaultDate: new Date(), //   Устанавливает начальную выбранную дату
-  minuteIncrement: 1, //   	Регулирует шаг ввода минут
+  enableTime: true,
+  time_24hr: true,
+  defaultDate: new Date(),
+  minuteIncrement: 1,
   onClose(selectedDates) {
     if (selectedDates[0] <= currentTime) {
       Notiflix.Notify.failure('Please choose a date in the future');
-      defaultNumberCalendar();
+      clearNumberCalendar();
       clearInterval(timerId);
       refs.buttonStart.disabled = true;
-      refs.buttonStart.style.cursor = 'not-allowed';
       return;
     }
     refs.buttonStart.disabled = false;
-    refs.buttonStart.style.cursor = 'pointer';
     dateInInput = selectedDates[0];
   },
   onChange() {
     if (timerId !== null) {
-      defaultNumberCalendar();
+      clearNumberCalendar();
     }
     clearInterval(timerId);
     return;
   },
 };
-
-// function buttonStartDisabled() {
-//   refs.buttonStart.style.cursor = 'pointer';
-// }
-
 function buttonActiveStartTimer() {
+  refs.buttonStart.disabled = true;
   timerId = setInterval(() => {
     const scienceTime = Date.now();
     const { days, hours, minutes, seconds } = convertMs(
@@ -55,17 +48,14 @@ function buttonActiveStartTimer() {
     );
     timerDate({ days, hours, minutes, seconds });
     if (scienceTime >= dateInInput) {
-      defaultNumberCalendar();
+      clearNumberCalendar();
       clearInterval(timerId);
       return;
     }
   }, 1000);
 }
-function defaultNumberCalendar() {
-  refs.spanDays.textContent = '00';
-  refs.spanHours.textContent = '00';
-  refs.spanMinutes.textContent = '00';
-  refs.spanSeconds.textContent = '00';
+function clearNumberCalendar() {
+  timerDate({ days: '00', hours: '00', minutes: '00', seconds: '00' });
 }
 function timerDate({ days, hours, minutes, seconds }) {
   refs.spanDays.textContent = days;
