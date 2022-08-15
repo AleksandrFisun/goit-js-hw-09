@@ -67,6 +67,7 @@ button{
     color: royalblue;
     border-color: royalblue;
     background-color: aliceblue;
+    cursor: pointer;
 }
 button:hover {
   color: aliceblue;
@@ -77,6 +78,7 @@ button:disabled{
   background-color: darkgray;
   border-color:slategrey;
   color: slategrey;
+  cursor: not-allowed ;
 }
 
 
